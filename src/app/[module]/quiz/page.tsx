@@ -1,8 +1,7 @@
 import { notFound } from 'next/navigation';
 import Quiz from '@/components/Quiz';
 import Header from '@/components/Header';
-import { noiseQuiz } from '@/lib/modules/noise-data';
-import { particulateQuiz } from '@/lib/modules/particulate-data';
+import { noiseQuiz, particulateQuiz } from '@/lib/data';
 
 type Props = {
   params: { module: string };

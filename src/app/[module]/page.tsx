@@ -1,8 +1,7 @@
 import { notFound } from 'next/navigation';
 import SlideViewer from '@/components/SlideViewer';
 import Header from '@/components/Header';
-import { noiseSlides } from '@/lib/modules/noise-data';
-import { particulateSlides } from '@/lib/modules/particulate-data';
+import { noiseSlides, particulateSlides } from '@/lib/data';
 
 type Props = {
   params: { module: string };
