@@ -6,19 +6,25 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
 import type { Slide } from '@/lib/data';
-import type { LucideIcon } from 'lucide-react';
-import { ArrowLeft, ArrowRight, Home } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Home, Mic, Wind } from 'lucide-react';
 
 type SlideViewerProps = {
   slides: Slide[];
   moduleName: string;
   title: string;
-  Icon: LucideIcon;
+  iconName: 'Mic' | 'Wind';
 };
 
-export default function SlideViewer({ slides, moduleName, title, Icon }: SlideViewerProps) {
+const icons = {
+  Mic: Mic,
+  Wind: Wind,
+};
+
+export default function SlideViewer({ slides, moduleName, title, iconName }: SlideViewerProps) {
   const [currentSlide, setCurrentSlide] = useState(0);
   const progress = ((currentSlide + 1) / slides.length) * 100;
+  
+  const Icon = icons[iconName];
 
   const goToNext = () => {
     if (currentSlide < slides.length - 1) {

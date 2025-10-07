@@ -2,7 +2,6 @@ import { notFound } from 'next/navigation';
 import { noiseQuiz, particulateQuiz } from '@/lib/data';
 import Quiz from '@/components/Quiz';
 import Header from '@/components/Header';
-import { Mic, Wind } from 'lucide-react';
 
 type Props = {
   params: { module: string };
@@ -20,16 +19,16 @@ export default function QuizPage({ params }: Props) {
   const { module } = params;
   let questions;
   let title;
-  let Icon;
+  let iconName;
 
   if (module === 'noise') {
     questions = noiseQuiz;
     title = 'Ruido Laboral';
-    Icon = Mic;
+    iconName = 'Mic';
   } else if (module === 'particulate') {
     questions = particulateQuiz;
     title = 'Material Particulado';
-    Icon = Wind;
+    iconName = 'Wind';
   } else {
     notFound();
   }
@@ -38,7 +37,7 @@ export default function QuizPage({ params }: Props) {
     <div className="flex flex-col min-h-screen">
       <Header />
       <main className="flex-1 container mx-auto p-4 md:p-8 flex items-center justify-center">
-        <Quiz questions={questions} moduleName={module} title={title} Icon={Icon} />
+        <Quiz questions={questions} moduleName={module} title={title} iconName={iconName} />
       </main>
     </div>
   );

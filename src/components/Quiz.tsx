@@ -11,23 +11,30 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/
 import { Progress } from '@/components/ui/progress';
 import { useToast } from '@/components/ui/use-toast';
 import type { QuizQuestion } from '@/lib/data';
-import type { LucideIcon } from 'lucide-react';
-import { CheckCircle, Home, RotateCw, Send, ThumbsDown, ThumbsUp, XCircle } from 'lucide-react';
+import { CheckCircle, Home, Mic, RotateCw, Send, ThumbsDown, ThumbsUp, Wind, XCircle } from 'lucide-react';
+import Link from 'next/link';
 
 type QuizProps = {
   questions: QuizQuestion[];
   moduleName: string;
   title: string;
-  Icon: LucideIcon;
+  iconName: 'Mic' | 'Wind';
 };
 
-export default function Quiz({ questions, moduleName, title, Icon }: QuizProps) {
+const icons = {
+    Mic: Mic,
+    Wind: Wind,
+};
+
+export default function Quiz({ questions, moduleName, title, iconName }: QuizProps) {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [answers, setAnswers] = useState<(number | null)[]>(Array(questions.length).fill(null));
   const [submitted, setSubmitted] = useState(false);
   const router = useRouter();
   const { toast } = useToast();
   const { noiseScore, particulateScore, setNoiseScore, setParticulateScore } = useContext(AppContext);
+  
+  const Icon = icons[iconName];
 
   const score = useMemo(() => {
     return answers.reduce((correct, answer, index) => {
@@ -65,7 +72,7 @@ export default function Quiz({ questions, moduleName, title, Icon }: QuizProps) 
     const passed = scorePercent >= 70;
     const isFirstQuizDone = moduleName === 'noise' && particulateScore === null;
     const bothQuizzesDone = (moduleName === 'noise' && particulateScore !== null) || (moduleName === 'particulate' && noiseScore !== null);
-    const canGetCertificate = noiseScore >= 70 && particulateScore >= 70;
+    const canGetCertificate = noiseScore !== null && particulateScore !== null && noiseScore >= 70 && particulateScore >= 70;
 
     return (
       <Card className="w-full max-w-2xl shadow-2xl">
@@ -114,7 +121,7 @@ export default function Quiz({ questions, moduleName, title, Icon }: QuizProps) 
                     Reintentar
                 </Button>
             )}
-            { isFirstQuizDone && <Button onClick={() => router.push('/particulate')}>Iniciar Módulo de Material Particulado</Button>}
+            { isFirstQuizDone && passed && <Button onClick={() => router.push('/particulate')}>Iniciar Módulo de Material Particulado</Button>}
             { bothQuizzesDone && canGetCertificate && <Button className="bg-green-600 hover:bg-green-700" onClick={() => router.push('/certificate')}>Generar Certificado</Button>}
             <Button onClick={() => router.push('/')}>
                 <Home className="mr-2 h-4 w-4" />
