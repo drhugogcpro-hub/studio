@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
 import type { Slide } from '@/lib/data';
 import { ArrowLeft, ArrowRight, Home, Mic, Wind } from 'lucide-react';
+import * as LucideIcons from 'lucide-react';
 
 type SlideViewerProps = {
   slides: Slide[];
@@ -20,31 +21,29 @@ const icons = {
   Wind: Wind,
 };
 
+const DynamicIcon = ({ name }: { name: string }) => {
+    const Icon = LucideIcons[name as keyof typeof LucideIcons] as React.ElementType;
+    if (!Icon) {
+      return null;
+    }
+    return <Icon className="w-16 h-16 text-accent mb-4" />;
+};
+
+
 export default function SlideViewer({ slides, moduleName, title, iconName }: SlideViewerProps) {
   const [currentSlide, setCurrentSlide] = useState(0);
   const progress = ((currentSlide + 1) / slides.length) * 100;
   
-  const Icon = icons[iconName];
-
-  const goToNext = () => {
-    if (currentSlide < slides.length - 1) {
-      setCurrentSlide(currentSlide + 1);
-    }
-  };
-
-  const goToPrev = () => {
-    if (currentSlide > 0) {
-      setCurrentSlide(currentSlide - 1);
-    }
-  };
+  const ModuleIcon = icons[iconName];
+  const slide = slides[currentSlide];
 
   return (
-    <Card className="w-full max-w-2xl shadow-2xl">
+    <Card className="w-full max-w-3xl shadow-2xl">
       <CardHeader>
         <div className="flex justify-between items-start">
             <div>
                 <CardTitle className="flex items-center gap-3 text-2xl mb-2">
-                    <Icon className="text-accent" size={28} />
+                    <ModuleIcon className="text-accent" size={28} />
                     {title}
                 </CardTitle>
                 <CardDescription>Diapositiva {currentSlide + 1} de {slides.length}</CardDescription>
@@ -55,17 +54,20 @@ export default function SlideViewer({ slides, moduleName, title, iconName }: Sli
         </div>
         <Progress value={progress} className="w-full mt-4" />
       </CardHeader>
-      <CardContent className="min-h-[200px] flex flex-col justify-center">
-        <h3 className="text-xl font-semibold text-primary mb-4">{slides[currentSlide].title}</h3>
-        <p className="text-foreground/90">{slides[currentSlide].content}</p>
+      <CardContent className="min-h-[300px] flex flex-col items-center justify-center text-center p-6 md:p-8">
+        <DynamicIcon name={slide.icon} />
+        <h3 className="text-xl md:text-2xl font-semibold text-primary mb-4">{slide.title}</h3>
+        <div className="text-foreground/90 space-y-2 text-left whitespace-pre-wrap">
+            {slide.content}
+        </div>
       </CardContent>
       <CardFooter className="flex justify-between">
-        <Button variant="outline" onClick={goToPrev} disabled={currentSlide === 0}>
+        <Button variant="outline" onClick={() => setCurrentSlide(currentSlide - 1)} disabled={currentSlide === 0}>
           <ArrowLeft className="mr-2" />
           Anterior
         </Button>
         {currentSlide < slides.length - 1 ? (
-          <Button onClick={goToNext}>
+          <Button onClick={() => setCurrentSlide(currentSlide + 1)}>
             Siguiente
             <ArrowRight className="ml-2" />
           </Button>

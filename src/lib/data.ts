@@ -1,6 +1,9 @@
+import type { LucideIcon } from "lucide-react";
+
 export type Slide = {
   title: string;
   content: string;
+  icon: string; // lucide-react icon name
 };
 
 export type QuizQuestion = {
@@ -11,29 +14,108 @@ export type QuizQuestion = {
 };
 
 export const noiseSlides: Slide[] = [
-  { title: "Fundamentos del Sonido y el Ruido Laboral", content: "El sonido es una vibración que se propaga como una onda de presión. El ruido es cualquier sonido no deseado. En el entorno laboral, medimos la intensidad del ruido en decibelios ponderados en A (dBA) para reflejar cómo el oído humano percibe el sonido." },
-  { title: "Efectos del Ruido en la Salud", content: "Más allá de la pérdida auditiva permanente (hipoacusia neurosensorial), la exposición al ruido puede provocar acúfenos (zumbido en los oídos), estrés crónico, aumento de la presión arterial, problemas de comunicación y un mayor riesgo de accidentes al enmascarar señales de advertencia." },
-  { title: "Límites de Exposición Ocupacional (LEP)", content: "La ACGIH establece un LEP de 85 dBA para 8 horas. Esto se conoce como nivel de acción. A partir de este nivel, el empleador debe implementar un programa de conservación de la audición. La 'tasa de intercambio' de 3 dB significa que por cada 3 dBA de aumento, el tiempo de exposición seguro se reduce a la mitad." },
-  { title: "Comparativa de Normativas Internacionales", content: "Mientras que la ACGIH y la Unión Europea usan 85 dBA como límite principal, la OSHA en EE.UU. utiliza un límite permisible de 90 dBA. Sin embargo, la recomendación de 85 dBA se considera una mejor práctica a nivel mundial por su mayor margen de protección para la salud auditiva." },
-  { title: "Instrumentos de Medición de Ruido", content: "El sonómetro mide el nivel de presión sonora en un punto y momento específicos, ideal para evaluar máquinas. El dosímetro es un dispositivo personal que el trabajador usa durante su turno para registrar su exposición acumulada al ruido, promediando los diferentes niveles a los que estuvo expuesto." },
-  { title: "Jerarquía de Controles Aplicada al Ruido", content: "Es un enfoque por pasos para mitigar el riesgo: 1. Eliminación (quitar la fuente), 2. Sustitución (usar equipos más silenciosos), 3. Ingeniería (aislamiento acústico, barreras), 4. Administrativos (rotación de personal, limitar tiempo de exposición), 5. EPP (última barrera)." },
-  { title: "Tipos y Selección de Protección Auditiva", content: "Los tapones (de inserción) son buenos para ruido constante. Las orejeras (tipo copa) son fáciles de poner y quitar, útiles para ruido intermitente. La selección se basa en el nivel de atenuación requerido (NRR), la compatibilidad con otro EPP, la comodidad y las condiciones del trabajo." },
-  { title: "Uso y Ajuste Correcto del EPP Auditivo", content: "Un ajuste inadecuado anula la protección. Para tapones de espuma: enrolle, inserte profundamente y sostenga hasta que se expanda. El extremo debe quedar dentro del canal auditivo. Las orejeras deben sellar firmemente alrededor de la oreja, sin obstrucciones como cabello o patillas de gafas." },
-  { title: "El NRR: Tasa de Reducción de Ruido", content: "El NRR es un valor teórico obtenido en laboratorio. En el mundo real, la protección es menor. Una regla práctica y conservadora es restar 7 al NRR y luego dividir el resultado por 2 para estimar la atenuación real. Ejemplo: NRR 33 -> (33-7)/2 = 13 dBA de reducción efectiva." },
-  { title: "Programa de Conservación de la Audición", content: "Un programa efectivo incluye monitoreo regular del ruido, audiometrías anuales para los trabajadores expuestos, capacitación sobre los efectos del ruido y el uso de EPP, mantenimiento de controles y evaluación continua de la efectividad del programa. Es un ciclo de mejora continua." },
+  { 
+    title: "Fundamentos del Sonido y el Ruido Laboral", 
+    content: "El sonido es una vibración que se propaga como una onda de presión. El ruido es cualquier sonido no deseado o molesto.\n\nEn el entorno laboral, medimos la intensidad del ruido en decibelios ponderados en A (dBA), una escala que imita cómo el oído humano percibe el sonido, priorizando las frecuencias a las que somos más sensibles.", 
+    icon: "Waves" 
+  },
+  { 
+    title: "Efectos del Ruido en la Salud", 
+    content: "La exposición a ruido excesivo va más allá de la pérdida auditiva (hipoacusia neurosensorial). Puede provocar acúfenos (zumbido constante), estrés crónico, aumento de la presión arterial y problemas cardiovasculares.\n\nTambién interfiere con la comunicación, aumentando el riesgo de accidentes al enmascarar señales de advertencia vitales.", 
+    icon: "HeartPulse" 
+  },
+  { 
+    title: "Límites de Exposición Ocupacional (LEP)", 
+    content: "La ACGIH establece un LEP de 85 dBA como 'Nivel de Acción' para una jornada de 8 horas. A partir de este nivel, es obligatorio implementar un Programa de Conservación de la Audición.\n\nSe aplica una 'tasa de intercambio' de 3 dB: por cada 3 dBA de aumento, el tiempo de exposición seguro se reduce a la mitad (p. ej., solo 4 horas a 88 dBA).", 
+    icon: "Gauge" 
+  },
+  { 
+    title: "Comparativa de Normativas Internacionales", 
+    content: "La recomendación de 85 dBA de la ACGIH es una de las más seguidas a nivel mundial, adoptada por la Unión Europea. \n\nOtras normativas, como la de OSHA en EE.UU., utilizan un límite permisible (PEL) de 90 dBA, pero exigen acción a los 85 dBA. La tendencia global se inclina hacia el estándar de 85 dBA como mejor práctica.", 
+    icon: "Globe" 
+  },
+  { 
+    title: "Instrumentos de Medición de Ruido", 
+    content: "El Sonómetro mide el nivel de presión sonora en un punto y momento específicos. Es ideal para evaluar el ruido de maquinaria fija o áreas concretas.\n\nEl Dosímetro es un dispositivo personal que el trabajador usa durante su turno para registrar la dosis de ruido acumulada, promediando los diferentes niveles a los que estuvo expuesto.", 
+    icon: "Radio" 
+  },
+  { 
+    title: "Jerarquía de Controles Aplicada al Ruido", 
+    content: "1. **Eliminación/Sustitución**: Quitar la fuente de ruido o usar equipos más silenciosos.\n2. **Controles de Ingeniería**: Instalar barreras acústicas, encerramientos o silenciadores.\n3. **Controles Administrativos**: Rotar al personal para limitar el tiempo de exposición, programar tareas ruidosas en horarios de menor personal.\n4. **EPP**: Uso de protectores auditivos (último recurso).", 
+    icon: "Pyramid" 
+  },
+  { 
+    title: "Tipos y Selección de Protección Auditiva", 
+    content: "Los tapones (de inserción o premoldeados) son discretos y buenos para ruido constante. Las orejeras (tipo copa) son fáciles de poner y quitar, ideales para ruido intermitente.\n\nLa selección depende del nivel de atenuación requerido (NRR), la comodidad, la compatibilidad con otro EPP (cascos, gafas) y el entorno de trabajo.", 
+    icon: "Ear" 
+  },
+  { 
+    title: "Uso y Ajuste Correcto del EPP Auditivo", 
+    content: "Un ajuste inadecuado anula la protección. Para tapones de espuma: enrolle, tire de la oreja hacia arriba y atrás, inserte profundamente y sostenga hasta que se expanda. \n\nLas orejeras deben sellar firmemente alrededor de la oreja, sin ser obstruidas por cabello grueso, patillas de gafas o gorras.", 
+    icon: "Check" 
+  },
+  { 
+    title: "El NRR: Tasa de Reducción de Ruido", 
+    content: "El NRR es un valor teórico de laboratorio. En el mundo real, la protección suele ser menor. Una fórmula conservadora para estimar la atenuación real es: (NRR - 7) / 2.\n\nEjemplo: Un protector con NRR 33 podría ofrecer una atenuación efectiva de (33-7)/2 = 13 dBA.", 
+    icon: "Calculator" 
+  },
+  { 
+    title: "Programa de Conservación de la Audición", 
+    content: "Es un sistema de gestión integral que incluye:\n- Monitoreo periódico de los niveles de ruido.\n- Audiometrías anuales para trabajadores expuestos.\n- Capacitación continua sobre los riesgos y el uso de EPP.\n- Mantenimiento de controles de ingeniería.\n- Evaluación de la efectividad del programa.", 
+    icon: "BookUser" 
+  },
 ];
 
 export const particulateSlides: Slide[] = [
-  { title: "Anatomía del Sistema Respiratorio", content: "Nuestro sistema respiratorio actúa como un filtro. Las vías superiores (nariz, faringe) capturan partículas grandes. Las más pequeñas pueden viajar por la tráquea y bronquios hasta llegar a los alvéolos, pequeños sacos donde el oxígeno pasa a la sangre y donde las partículas finas causan el mayor daño." },
-  { title: "Clasificación de Partículas por Tamaño (PM)", content: "El tamaño aerodinámico determina dónde se depositan las partículas. PM10 (Torácicas, <10 µm) llegan al pecho. PM4 (Respirables, <4 µm) y PM2.5 (<2.5 µm) penetran hasta los alvéolos. Son invisibles al ojo humano y pueden permanecer suspendidas en el aire por horas." },
-  { title: "Fuentes y Tipos de Material Particulado", content: "Las fuentes son variadas: polvos (sílice de construcción, polvo de madera), humos (soldadura de metales), neblinas (pintura en aerosol) y fibras (asbesto). Cada tipo tiene un potencial de daño diferente para la salud." },
-  { title: "Efectos Agudos y Crónicos en la Salud", content: "Los efectos agudos incluyen irritación de ojos y garganta, y ataques de asma. La exposición crónica puede llevar a enfermedades incurables como la Enfermedad Pulmonar Obstructiva Crónica (EPOC), silicosis (por sílice), asbestosis (por asbesto) y cáncer de pulmón." },
-  { title: "Límites de Exposición Profesional (LEP)", content: "Los LEP (o TLVs de ACGIH) son concentraciones máximas permitidas para sustancias en el aire, promediadas para un turno de 8 horas. Existen límites específicos para cientos de sustancias, como 0.025 mg/m³ para sílice cristalina respirable, uno de los más peligrosos." },
-  { title: "Jerarquía de Controles para Particulado", content: "Prioridad: 1. Eliminación/Sustitución (usar materiales sin sílice). 2. Controles de Ingeniería (ventilación por extracción localizada, procesos húmedos para abatir el polvo). 3. Controles Administrativos (limpieza con aspiradoras HEPA, no barrer en seco). 4. EPP (respiradores)." },
-  { title: "Tipos de Respiradores: Purificadores de Aire", content: "Estos respiradores usan filtros para eliminar contaminantes. Incluyen mascarillas desechables (como N95) y respiradores de media cara o cara completa con cartuchos reemplazables. No suministran oxígeno y no deben usarse en atmósferas con deficiencia de oxígeno." },
-  { title: "Clasificación de Filtros: N, R, P y Eficiencia", content: "Clasificación según resistencia al aceite: N (No resistente), R (Resistente, hasta 8h) y P (A prueba de aceite). Clasificación por eficiencia: 95%, 99% y 100% (99.97%). Un P100 ofrece la mayor protección de filtrado para partículas." },
-  { title: "Pruebas de Ajuste (Fit Testing) y Verificación del Sello", content: "La prueba de ajuste (anual, cualitativa o cuantitativa) asegura que el modelo y talla del respirador son correctos para el usuario. La verificación del sello (presión positiva y negativa) es una comprobación rápida que el trabajador debe hacer cada vez que se pone el respirador." },
-  { title: "Uso, Mantenimiento e Inspección del Respirador", content: "Inspeccionar antes de cada uso buscando grietas, suciedad o daños en válvulas y correas. Limpiar según las instrucciones del fabricante. Almacenar en un lugar limpio y seco, protegido de la contaminación. Reemplazar filtros y cartuchos según su vida útil o cuando se saturen." },
+  { 
+    title: "Anatomía del Sistema Respiratorio", 
+    content: "Las vías superiores (nariz, faringe) atrapan partículas grandes (>10 µm). Las más pequeñas viajan por la tráquea y bronquios.\n\nLas partículas finas (<4 µm) pueden llegar a los alvéolos, pequeños sacos donde ocurre el intercambio de gases y donde causan el mayor daño inflamatorio y cicatricial.", 
+    icon: "Lungs" 
+  },
+  { 
+    title: "Clasificación de Partículas por Tamaño (PM)", 
+    content: "El tamaño aerodinámico determina su peligrosidad.\n- **PM10 (Inhalable)**: Partículas <10 µm que pueden ser inhaladas por la nariz o boca.\n- **PM4 (Torácica)**: Fracción <4 µm que llega a las vías respiratorias bajas.\n- **PM2.5 (Respirable)**: Fracción <2.5 µm que penetra hasta los alvéolos. Son las más dañinas.", 
+    icon: "Ruler" 
+  },
+  { 
+    title: "Fuentes y Tipos de Material Particulado", 
+    content: "**Polvos**: Partículas sólidas generadas por procesos mecánicos (moler, lijar). Ej: sílice, cemento, madera.\n**Humos**: Partículas metálicas muy finas generadas por procesos térmicos (soldadura).\n**Neblinas**: Gotitas líquidas suspendidas en el aire (pintura en aerosol).\n**Fibras**: Partículas alargadas (asbesto).", 
+    icon: "Factory" 
+  },
+  { 
+    title: "Efectos Agudos y Crónicos en la Salud", 
+    content: "**Agudos**: Irritación de ojos, nariz y garganta; tos; y exacerbación de condiciones como el asma.\n\n**Crónicos**: Enfermedades pulmonares incurables como la Enfermedad Pulmonar Obstructiva Crónica (EPOC), silicosis (por sílice), asbestosis (por asbesto) y diversos tipos de cáncer.", 
+    icon: "Stethoscope" 
+  },
+  { 
+    title: "Límites de Exposición Profesional (LEP)", 
+    content: "Los LEP (o TLVs de ACGIH) son concentraciones máximas permitidas para sustancias en el aire, promediadas para un turno de 8 horas (TWA).\n\nExisten límites específicos para cientos de sustancias. Por ejemplo, el de la sílice cristalina respirable es de solo 0.025 mg/m³, evidenciando su alta toxicidad.", 
+    icon: "AlertTriangle" 
+  },
+  { 
+    title: "Jerarquía de Controles para Particulado", 
+    content: "1. **Eliminación/Sustitución**: Usar materiales pre-cortados o pastas en lugar de polvos.\n2. **Controles de Ingeniería**: Ventilación por extracción localizada (captura en la fuente), procesos húmedos para abatir el polvo.\n3. **Controles Administrativos**: Limpieza con aspiradoras HEPA (no barrer en seco), rotación de personal.\n4. **EPP**: Uso de respiradores.", 
+    icon: "Pyramid" 
+  },
+  { 
+    title: "Tipos de Respiradores: Purificadores de Aire", 
+    content: "Filtran los contaminantes del aire antes de ser inhalado. No suministran oxígeno, por lo que no deben usarse en atmósferas con deficiencia de O2 (<19.5%).\n\n- **Mascarillas desechables**: Como las N95, para polvos no tóxicos.\n- **Respiradores reutilizables**: De media cara o cara completa con cartuchos/filtros reemplazables.", 
+    icon: "FileQuestion" 
+  },
+  { 
+    title: "Clasificación de Filtros: N, R, P y Eficiencia", 
+    content: "Según resistencia a aceites:\n- **N**: No resistente.\n- **R**: Resistente (hasta 8h).\n- **P**: A prueba de aceite.\n\nSegún eficiencia de filtrado:\n- **95**: Filtra el 95%.\n- **99**: Filtra el 99%.\n- **100**: Filtra el 99.97% (filtros HEPA).\n\nUn filtro P100 ofrece la máxima protección contra partículas.", 
+    icon: "Filter" 
+  },
+  { e: "Pruebas de Ajuste (Fit Testing) y Verificación del Sello", 
+    content: "La **prueba de ajuste** (anual, cualitativa o cuantitativa) es crucial para asegurar que el modelo y talla del respirador son correctos para cada usuario.\n\nLa **verificación del sello** (presión positiva y negativa) es una comprobación rápida que el trabajador debe hacer cada vez que se pone el respirador para detectar fugas.", 
+    icon: "UserCheck" 
+  },
+  { 
+    title: "Uso, Mantenimiento e Inspección del Respirador", 
+    content: "Inspeccionar antes de cada uso: buscar grietas, suciedad, o daños en válvulas y correas. Limpiar según las instrucciones del fabricante. Reemplazar filtros y cartuchos cuando se saturen, se dañen o según su vida útil.\n\nAlmacenar en un lugar limpio y seco, en una bolsa sellada para protegerlo de la contaminación.", 
+    icon: "Wrench" 
+  },
 ];
 
 
@@ -71,3 +153,16 @@ export const certificateConfig = {
   primaryColor: "#243A73",
   secondaryColor: "#E07A5F",
 };
+
+// Fix typo from previous turn
+const particulateSlidesWithFix = particulateSlides.map(s => {
+    if ('e' in s) {
+        // @ts-ignore
+        s.title = s.e;
+        // @ts-ignore
+        delete s.e;
+    }
+    return s;
+});
+
+export { particulateSlidesWithFix as particulateSlides };
