@@ -166,5 +166,3 @@ const particulateSlidesWithFix = particulateSlides.map(s => {
     }
     return s;
 });
-
-export { particulateSlidesWithFix as particulateSlidesFixed };
