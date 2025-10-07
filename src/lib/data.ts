@@ -1,3 +1,4 @@
+
 import type { LucideIcon } from "lucide-react";
 
 export type Slide = {
@@ -107,7 +108,8 @@ export const particulateSlides: Slide[] = [
     content: "Según resistencia a aceites:\n- **N**: No resistente.\n- **R**: Resistente (hasta 8h).\n- **P**: A prueba de aceite.\n\nSegún eficiencia de filtrado:\n- **95**: Filtra el 95%.\n- **99**: Filtra el 99%.\n- **100**: Filtra el 99.97% (filtros HEPA).\n\nUn filtro P100 ofrece la máxima protección contra partículas.", 
     icon: "Filter" 
   },
-  { e: "Pruebas de Ajuste (Fit Testing) y Verificación del Sello", 
+  { 
+    title: "Pruebas de Ajuste (Fit Testing) y Verificación del Sello", 
     content: "La **prueba de ajuste** (anual, cualitativa o cuantitativa) es crucial para asegurar que el modelo y talla del respirador son correctos para cada usuario.\n\nLa **verificación del sello** (presión positiva y negativa) es una comprobación rápida que el trabajador debe hacer cada vez que se pone el respirador para detectar fugas.", 
     icon: "UserCheck" 
   },
@@ -165,4 +167,4 @@ const particulateSlidesWithFix = particulateSlides.map(s => {
     return s;
 });
 
-export { particulateSlidesWithFix as particulateSlides };
+export { particulateSlidesWithFix as particulateSlidesFixed };
