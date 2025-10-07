@@ -21,16 +21,16 @@ export const certificateConfig = {
 };
 
 export const noiseSlides: Slide[] = [
-    { title: "Fundamentos del Ruido", content: "El sonido es una vibración; el ruido es sonido no deseado. Se mide en decibelios (dBA).", icon: "Waves" },
-    { title: "Efectos en la Salud", content: "Causa pérdida auditiva, estrés y problemas cardiovasculares. Aumenta riesgo de accidentes.", icon: "HeartPulse" },
-    { title: "Límites de Exposición", content: "El Nivel de Acción es 85 dBA para 8 horas. Por cada 3 dBA de aumento, el tiempo seguro se reduce a la mitad.", icon: "Gauge" },
-    { title: "Normativas", content: "La recomendación de 85 dBA de ACGIH es el estándar global moderno para la conservación auditiva.", icon: "Globe" },
-    { title: "Instrumentos de Medición", content: "Sonómetro: mide el ruido en un punto. Dosímetro: mide la exposición personal del trabajador.", icon: "Radio" },
-    { title: "Jerarquía de Controles", content: "1. Eliminación/Sustitución\n2. Ingeniería (barreras)\n3. Administrativos (rotación)\n4. EPP (protectores)", icon: "Pyramid" },
-    { title: "Tipos de Protección Auditiva", content: "Tapones: para ruido constante.\nOrejeras: para ruido intermitente y mayor atenuación.", icon: "Ear" },
-    { title: "Ajuste Correcto del EPP", content: "Un mal ajuste anula la protección. El EPP debe sellar firmemente.", icon: "Check" },
-    { title: "Tasa de Reducción de Ruido (NRR)", content: "Es un valor de laboratorio. La protección real se estima con la fórmula: (NRR - 7) / 2.", icon: "Calculator" },
-    { title: "Programa de Conservación Auditiva", content: "Incluye monitoreo, audiometrías anuales, capacitación y evaluación del programa.", icon: "BookUser" },
+    { title: "Fundamentos del Ruido", content: "El sonido es una onda de presión que viaja a través de un medio. El ruido es cualquier sonido no deseado.\nSe mide en decibelios (dBA), una escala logarítmica que se ajusta a la sensibilidad del oído humano.", icon: "Waves" },
+    { title: "Efectos en la Salud", content: "La exposición prolongada daña las células ciliadas del oído interno, causando pérdida auditiva permanente (hipoacusia).\nAdemás, puede provocar estrés, insomnio, hipertensión y aumentar el riesgo de accidentes laborales por no oír las alarmas.", icon: "HeartPulse" },
+    { title: "Límites de Exposición", content: "El Nivel de Acción es 85 dBA para 8 horas (TWA). La 'tasa de intercambio' de 3 dB significa que al llegar a 88 dBA, el tiempo de exposición seguro se reduce a solo 4 horas.", icon: "Gauge" },
+    { title: "Normativas de Referencia", content: "La recomendación de 85 dBA de la ACGIH es el estándar de oro en salud ocupacional.\nOSHA en EE.UU. usa 90 dBA como límite permisible, pero requiere acción a los 85 dBA.", icon: "Globe" },
+    { title: "Instrumentos de Medición", content: "Sonómetro: Mide el nivel de presión sonora en un punto y momento específicos. Ideal para mapeo de ruido.\nDosímetro: Lo usa el trabajador durante su jornada para medir su exposición personal acumulada.", icon: "Radio" },
+    { title: "Jerarquía de Controles", content: "Es el pilar de la seguridad. El orden es: 1. Eliminación/Sustitución (la más efectiva). 2. Ingeniería (aislamiento de máquinas). 3. Administrativos (rotación de personal). 4. EPP (la última barrera).", icon: "Pyramid" },
+    { title: "Tipos de Protección Auditiva", content: "Tapones: Desechables o reutilizables, buenos para ruido constante de nivel bajo a moderado.\nOrejeras (Cascos): Ofrecen mayor atenuación, ideales para ruido muy alto o intermitente.", icon: "Ear" },
+    { title: "Ajuste Correcto del EPP", content: "Un mal ajuste puede reducir la protección a casi cero. Los tapones deben insertarse correctamente y las orejeras deben sellar completamente alrededor de la oreja, sin interferencias.", icon: "Check" },
+    { title: "Tasa de Reducción de Ruido (NRR)", content: "Es un valor de atenuación obtenido en laboratorio. Para una estimación realista en campo, OSHA recomienda la fórmula: (NRR - 7) / 2. El resultado es la atenuación aproximada en dBA.", icon: "Calculator" },
+    { title: "Programa de Conservación Auditiva", content: "Es un requisito legal si se supera el Nivel de Acción. Incluye: monitoreo del ruido, audiometrías anuales para los trabajadores expuestos, capacitación, selección de EPP y registros.", icon: "BookUser" },
 ];
 
 export const noiseQuiz: QuizQuestion[] = [
@@ -47,16 +47,16 @@ export const noiseQuiz: QuizQuestion[] = [
 ];
 
 export const particulateSlides: Slide[] = [
-    { title: "Sistema Respiratorio", content: "Las partículas grandes (>10µm) se quedan en nariz/boca. Las pequeñas (<4µm) llegan a los alvéolos y causan daño.", icon: "Lungs" },
-    { title: "Clasificación de Partículas (PM)", content: "PM10 (Inhalable), PM4 (Torácica), y PM2.5 (Respirable). Las PM2.5 son las más peligrosas por su penetración profunda.", icon: "Ruler" },
-    { title: "Fuentes y Tipos", content: "Polvos (sílice, cemento), Humos (soldadura), Neblinas (pintura en aerosol) y Fibras (asbesto).", icon: "Factory" },
-    { title: "Efectos en la Salud", content: "Agudos: Irritación, tos. Crónicos: EPOC, silicosis, asbestosis y cáncer.", icon: "Stethoscope" },
-    { title: "Límites de Exposición", content: "Son concentraciones máximas para un turno de 8 horas. El límite para sílice cristalina es muy bajo (0.025 mg/m³).", icon: "AlertTriangle" },
-    { title: "Jerarquía de Controles", content: "1. Eliminación\n2. Ingeniería (extracción, procesos húmedos)\n3. Administrativos (limpieza HEPA)\n4. EPP (respiradores).", icon: "Pyramid" },
-    { title: "Tipos de Respiradores", content: "Filtran contaminantes, no suministran oxígeno. Hay desechables (N95) y reutilizables (media cara/cara completa).", icon: "FileQuestion" },
-    { title: "Clasificación de Filtros", content: "N: No resistente a aceite.\nR: Resistente a aceite.\nP: A prueba de aceite.\nLa eficiencia es 95, 99 o 100 (99.97%).", icon: "Filter" },
-    { title: "Pruebas de Ajuste (Fit Test)", content: "Aseguran un sello correcto en la cara. Debe hacerse anualmente. El trabajador debe verificar el sello cada vez que lo usa.", icon: "UserCheck" },
-    { title: "Mantenimiento del Respirador", content: "Inspeccionar antes de cada uso. Limpiar según instrucciones. Almacenar en lugar limpio y seco.", icon: "Wrench" },
+    { title: "El Sistema Respiratorio", content: "Funciona como un filtro. Las partículas grandes (>10µm) se atrapan en la nariz y garganta.\nLas más pequeñas (<4µm) son las más peligrosas porque llegan a los alvéolos, donde ocurre el intercambio de gases.", icon: "Lungs" },
+    { title: "Clasificación de Partículas (PM)", content: "Se clasifican por su tamaño aerodinámico. PM10 (Inhalable) llega a la tráquea y bronquios. PM2.5 (Respirable) alcanza los alvéolos, pudiendo pasar al torrente sanguíneo.", icon: "Ruler" },
+    { title: "Fuentes y Tipos Comunes", content: "Polvos: sílice, cemento, madera. Humos: soldadura, combustión. Neblinas: pintura en spray, aceites. Fibras: asbesto.\nCada uno tiene un nivel de toxicidad y riesgo distinto.", icon: "Factory" },
+    { title: "Efectos en la Salud", content: "Agudos: irritación de ojos, nariz, garganta. Crónicos: EPOC, asma ocupacional, silicosis (cicatrización del pulmón por sílice), asbestosis y varios tipos de cáncer.", icon: "Stethoscope" },
+    { title: "Límites de Exposición", content: "Son concentraciones máximas en el aire para un turno de 8h. El límite para sílice cristalina es extremadamente bajo (0.025 mg/m³) debido a su alta toxicidad.", icon: "AlertTriangle" },
+    { title: "Jerarquía de Controles", content: "1. Eliminación. 2. Ingeniería: sistemas de extracción localizada, uso de agua para suprimir polvo. 3. Administrativos: rotación, limpieza con aspiradoras HEPA. 4. EPP: respiradores.", icon: "Pyramid" },
+    { title: "Tipos de Respiradores", content: "Filtran el aire, no suministran oxígeno. Los más comunes son las mascarillas desechables (N95) y los reutilizables de media cara o cara completa con cartuchos específicos.", icon: "FileQuestion" },
+    { title: "Clasificación de Filtros", content: "Letra: N (No resistente a aceite), R (Resistente), P (a Prueba de aceite).\nNúmero: Eficiencia de filtrado (95%, 99%, o 100 para 99.97%). Un N95 es el más común.", icon: "Filter" },
+    { title: "Pruebas de Ajuste (Fit Test)", content: "Es un procedimiento anual obligatorio para asegurar que el respirador sella perfectamente con la cara del usuario. Adicionalmente, el trabajador debe hacer una autoverificación del sello cada vez que lo usa.", icon: "UserCheck" },
+    { title: "Uso y Mantenimiento", content: "Inspeccionar el respirador en busca de daños antes de cada uso. Limpiar y desinfectar los reutilizables regularmente. Almacenar en un lugar limpio y seco, protegido de la contaminación.", icon: "Wrench" },
 ];
 
 export const particulateQuiz: QuizQuestion[] = [
