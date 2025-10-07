@@ -9,7 +9,7 @@ import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Label } from '@/components/ui/label';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Progress } from '@/components/ui/progress';
-import { useToast } from '@/components/ui/use-toast';
+import { useToast } from '@/hooks/use-toast';
 import type { QuizQuestion } from '@/lib/data';
 import { CheckCircle, Home, Mic, RotateCw, Send, ThumbsDown, ThumbsUp, Wind, XCircle } from 'lucide-react';
 import Link from 'next/link';
@@ -98,7 +98,7 @@ export default function Quiz({ questions, moduleName, title, iconName }: QuizPro
                   {questions.map((q, i) => (
                     <div key={i} className="p-3 border rounded-md">
                       <p className="font-semibold">{i + 1}. {q.q}</p>
-                      <p className="text-sm">Tu respuesta: <span className="font-medium">{answers[i] !== null ? q.opts[answers[i]] : 'No respondida'}</span></p>
+                      <p className="text-sm">Tu respuesta: <span className="font-medium">{answers[i] !== null ? q.opts[answers[i] as number] : 'No respondida'}</span></p>
                       {answers[i] === q.a ? (
                         <p className="text-sm text-green-600 flex items-center gap-1"><CheckCircle size={16}/> Correcto</p>
                       ) : (
