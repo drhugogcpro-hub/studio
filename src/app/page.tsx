@@ -24,7 +24,7 @@ export default function Home() {
         <div className="text-center mb-12">
           <h1 className="text-4xl md:text-5xl font-bold text-primary mb-2">Bienvenido a la Capacitación</h1>
           <p className="text-lg text-muted-foreground">
-            Selecciona un módulo para comenzar tu aprendizaje sobre seguridad laboral.
+            Selecciona un módulo para comenzar tu aprendizaje sobre Salud Ocupacional.
           </p>
         </div>
 
