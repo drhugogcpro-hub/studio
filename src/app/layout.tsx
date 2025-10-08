@@ -3,7 +3,6 @@ import './globals.css';
 import { AppProvider } from '@/context/AppContext';
 import { Toaster } from '@/components/ui/toaster';
 import ServiceWorkerRegistrar from '@/components/ServiceWorkerRegistrar';
-import { FirebaseClientProvider } from '@/firebase';
 
 export const metadata: Metadata = {
   title: 'Safe Workplace Training',
@@ -29,9 +28,7 @@ export default function RootLayout({
       </head>
       <body className="font-body antialiased">
         <AppProvider>
-          <FirebaseClientProvider>
-            {children}
-          </FirebaseClientProvider>
+          {children}
           <Toaster />
         </AppProvider>
         <ServiceWorkerRegistrar />

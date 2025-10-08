@@ -1,5 +1,6 @@
 import CertificateFlow from '@/components/CertificateFlow';
 import Header from '@/components/Header';
+import { FirebaseClientProvider } from '@/firebase';
 
 export const metadata = {
     title: 'Generar Certificado'
@@ -10,7 +11,9 @@ export default function CertificatePage() {
     <div className="flex flex-col min-h-screen">
       <Header />
       <main className="flex-1 container mx-auto p-4 md:p-8 flex items-center justify-center">
-        <CertificateFlow />
+        <FirebaseClientProvider>
+          <CertificateFlow />
+        </FirebaseClientProvider>
       </main>
     </div>
   );
