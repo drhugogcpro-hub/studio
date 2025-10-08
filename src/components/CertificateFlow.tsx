@@ -11,6 +11,9 @@ import { Button } from '@/components/ui/button';
 import { certificateConfig } from '@/lib/data';
 import { AlertCircle, Download, Send } from 'lucide-react';
 import { Skeleton } from './ui/skeleton';
+import { useFirebase } from '@/firebase';
+import { collection, serverTimestamp } from 'firebase/firestore';
+import { addDocumentNonBlocking } from '@/firebase/non-blocking-updates';
 
 export default function CertificateFlow() {
   const router = useRouter();
@@ -18,6 +21,7 @@ export default function CertificateFlow() {
   const { noiseScore, particulateScore, setCertificateGenerated } = useContext(AppContext);
   const [workerName, setWorkerName] = useState('');
   const [isEligible, setIsEligible] = useState<boolean | null>(null);
+  const { firestore } = useFirebase();
 
   useEffect(() => {
     if (noiseScore !== null && particulateScore !== null) {
@@ -117,11 +121,23 @@ export default function CertificateFlow() {
       return;
     }
 
+    // Save record to Firestore
+    if (firestore && noiseScore !== null && particulateScore !== null) {
+      const trainingRecordsCol = collection(firestore, 'trainingRecords');
+      const newRecord = {
+        workerName: workerName.trim(),
+        noiseScore: noiseScore,
+        particulateScore: particulateScore,
+        completionDate: serverTimestamp(),
+      };
+      addDocumentNonBlocking(trainingRecordsCol, newRecord);
+    }
+
     const certHTML = generateCertificateHTML();
     const blob = new Blob([certHTML], { type: 'text/html' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
-    a.href = url;
+a.href = url;
     a.download = `Certificado_${workerName.replace(/\s+/g, '_')}.html`;
     document.body.appendChild(a);
     a.click();
@@ -132,7 +148,7 @@ export default function CertificateFlow() {
 
     toast({
       title: '¡Descarga Iniciada!',
-      description: 'Tu certificado se está descargando como un archivo HTML.',
+      description: 'Tu certificado se está descargando y tu registro ha sido guardado.',
       action: <Button variant="outline" onClick={() => router.push('/')}>Volver al inicio</Button>
     });
   };
@@ -161,7 +177,7 @@ export default function CertificateFlow() {
           Generar Certificado
         </CardTitle>
         <CardDescription>
-          ¡Felicidades por aprobar! Ingresa tu nombre para generar tu certificado descargable.
+          ¡Felicidades por aprobar! Ingresa tu nombre para generar tu certificado y guardar tu registro.
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-4">
