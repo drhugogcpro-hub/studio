@@ -1,0 +1,49 @@
+/**
+ * @file Firestore Security Rules for Training Session Records
+ *
+ * Core Philosophy:
+ * This ruleset enforces a flexible security model for storing training session records.
+ * It allows public read access but restricts write access to authenticated users.
+ *
+ * Data Structure:
+ * All training session records are stored in a top-level collection called `trainingSessions`.
+ * Each document represents a single training session.
+ *
+ * Key Security Decisions:
+ * - Public read access is granted for all training session records.
+ * - Only authenticated users can create, update, or delete training session records.
+ *   It's CRITICAL that the application logic ensures only authorized users create, update, or delete training sessions.
+ *
+ * Denormalization for Authorization:
+ * The current data model doesn't include an explicit 'ownerId' or 'authorId' field within the `TrainingSession` entity.
+ * To implement true owner-only writes, you would need to add such a field to the schema.
+ * Until then, writes are only restricted to authenticated users, without specific ownership validation.
+ *
+ * Structural Segregation:
+ * All training session records are stored in a single top-level collection.
+ */
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    /**
+     * @description Manages access to individual training session records.
+     * @path /trainingSessions/{trainingSessionId}
+     * @allow (get, list): Anyone can read training session records.
+     * @allow (create, update, delete): Only authenticated users can create, update, or delete training session records. It's CRITICAL that the application logic ensures only authorized users perform these actions.
+     * @deny (create, update, delete): Unauthenticated users cannot create, update, or delete training session records.
+     * @principle Allows public reads, and limits writes to only authenticated users.
+     */
+    match /trainingSessions/{trainingSessionId} {
+      allow get, list: if true;
+      allow create: if isSignedIn();
+      allow update: if isSignedIn() && resource != null;
+      allow delete: if isSignedIn() && resource != null;
+    }
+
+    // Helper function to check if a user is signed in.
+    function isSignedIn() {
+      return request.auth != null;
+    }
+  }
+}

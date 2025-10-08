@@ -1,0 +1,72 @@
+{
+  "entities": {
+    "TrainingSession": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "TrainingSession",
+      "type": "object",
+      "description": "Represents a training session completed by a worker, including their scores and completion date.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the training session."
+        },
+        "workerName": {
+          "type": "string",
+          "description": "The name of the worker who completed the training."
+        },
+        "ruidoScore": {
+          "type": "number",
+          "description": "The worker's score on the ruido (noise) module, as a percentage."
+        },
+        "particuladoScore": {
+          "type": "number",
+          "description": "The worker's score on the material particulado (particulate matter) module, as a percentage."
+        },
+        "completionDate": {
+          "type": "string",
+          "description": "The date and time when the training session was completed.",
+          "format": "date-time"
+        },
+        "certificateURL": {
+          "type": "string",
+          "description": "URL where the certificate can be downloaded or viewed.",
+          "format": "uri"
+        }
+      },
+      "required": [
+        "id",
+        "workerName",
+        "ruidoScore",
+        "particuladoScore",
+        "completionDate"
+      ]
+    }
+  },
+  "auth": {
+    "providers": [
+      "password",
+      "anonymous"
+    ]
+  },
+  "firestore": {
+    "structure": [
+      {
+        "path": "/trainingSessions/{trainingSessionId}",
+        "definition": {
+          "entityName": "TrainingSession",
+          "schema": {
+            "$ref": "#/backend/entities/TrainingSession"
+          },
+          "description": "Stores all training session records, including worker names, scores, and completion dates.",
+          "params": [
+            {
+              "name": "trainingSessionId",
+              "description": "Unique identifier for the training session document."
+            }
+          ]
+        }
+      }
+    ],
+    "reasoning": "The data structure is designed to store training session records, including worker names and scores. To ensure authorization independence and facilitate secure listing, the data is structured within a top-level collection `trainingSessions`. This approach avoids hierarchical authorization dependencies, ensuring atomic operations (transactions/batches) are possible and debugging is straightforward.\n\n*   **Authorization Independence:** Storing all training session records in a top-level `trainingSessions` collection allows direct querying and management without needing to retrieve parent document data.\n*   **QAPs (Rules are not Filters):** Segregating the training session data into its own collection enables secure list operations. Security rules can be applied directly to the `trainingSessions` collection to control access based on user roles or other criteria, without needing to filter based on the contents of other collections or documents."
+  }
+}
