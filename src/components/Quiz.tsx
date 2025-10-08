@@ -149,7 +149,7 @@ export default function Quiz({ questions, moduleName, title, iconName }: QuizPro
       </CardHeader>
       <CardContent className="min-h-[200px]">
         <h3 className="text-lg font-semibold mb-4">{questions[currentQuestion].q}</h3>
-        <RadioGroup value={answers[currentQuestion]?.toString()} onValueChange={handleSelectAnswer}>
+        <RadioGroup value={answers[currentQuestion]?.toString() ?? ''} onValueChange={handleSelectAnswer}>
           {questions[currentQuestion].opts.map((opt, i) => (
             <div key={i} className="flex items-center space-x-2 p-3 rounded-md hover:bg-secondary transition-colors">
               <RadioGroupItem value={i.toString()} id={`q${currentQuestion}-opt${i}`} />
